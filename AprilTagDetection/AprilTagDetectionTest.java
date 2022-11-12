@@ -109,14 +109,6 @@ public class AprilTagDetectionTest extends LinearOpMode {
             telemetry.update();
         }
 
-        if (tagOfInterest.id == LEFT_TAG_ID || tagOfInterest == null) {
-
-        } else if (tagOfInterest.id == CENTER_TAG_ID) {
-
-        } else if (tagOfInterest.id == RIGHT_TAG_ID) {
-
-        }
-
         /* You wouldn't have this in your autonomous, this is just to prevent the sample from ending */
         while (opModeIsActive()) {
             sleep(20);
