@@ -163,7 +163,7 @@ private class GamepadController extends GamepadControllerBase {
 // To make a controller class for gamepad2, simply extend GamepadController and override the update() method.
 public class Gamepad2Controller extends GamepadController {
     @Override
-    protected void update() {
+    public void update() {
         try {
             previous.copy(gamepad);
             gamepad.copy(gamepad2);
