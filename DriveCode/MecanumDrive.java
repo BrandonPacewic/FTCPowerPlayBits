@@ -15,10 +15,8 @@ public class MecanumDrive extends LinearOpMode {
         DcMotor motorBackLeft   = hardwareMap.dcMotor.get("motorBackLeft");
         DcMotor motorBackRight  = hardwareMap.dcMotor.get("motorBackRight");
 
-        // Wait for the start button to be pressed.
         waitForStart();
 
-        // Loop until the stop button is pressed.
         while (opModeIsActive()) {
             double ly = -gamepad1.left_stick_y; // Reversed.
             double lx =  gamepad1.left_stick_x;
