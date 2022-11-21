@@ -13,7 +13,7 @@ public class GamepadControllerBase {
     // Must be called at the beginning of each while opModeIsActive() loop.
     protected void update(Gamepad gamepad) {
         try {
-            this.previous.copy(gamepad);
+            this.previous.copy(this.gamepad);
             this.gamepad.copy(gamepad);
         } catch (RobotCoreException e) {
             // Swallow exception, gamepad[1/2] should always be valid.

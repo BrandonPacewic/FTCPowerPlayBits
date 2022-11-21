@@ -17,18 +17,17 @@ public class FieldCentricMecanumDrive extends LinearOpMode {
         protected Gamepad previous;
 
         protected GamepadControllerBase() {
-            gamepad  = new Gamepad();
-            previous = new Gamepad();
+            this.gamepad  = new Gamepad();
+            this.previous = new Gamepad();
         }
 
         // Must be called at the beginning of each while opModeIsActive() loop.
-        // NOTE: 4097 driver station assignees controller to gamepad2 by default.
-        protected void update() {
+        protected void update(Gamepad gamepad) {
             try {
-                previous.copy(gamepad);
-                gamepad.copy(gamepad2);
+                this.previous.copy(this.gamepad);
+                this.gamepad.copy(gamepad);
             } catch (RobotCoreException e) {
-                // Swallow exception, gamepad2 should always be valid.
+                // Swallow exception, gamepad[1/2] should always be valid.
             }
         }
     }
@@ -86,20 +85,20 @@ public class FieldCentricMecanumDrive extends LinearOpMode {
         }
 
         while (opModeIsActive()) {
-            gamepadController.update();
+            gamepadController.update(gamepad1);
 
-            final double ly = -gamepadController.gamepad.left_stick_y; // reversed
-            final double lx = -gamepadController.gamepad.left_stick_x; // reversed
-            final double rx = gamepadController.gamepad.right_stick_x;
+            double ly = -gamepadController.gamepad.left_stick_y; // reversed
+            double lx = -gamepadController.gamepad.left_stick_x; // reversed
+            double rx = gamepadController.gamepad.right_stick_x;
 
-            final double botHeading = imu.getAngularOrientation().firstAngle;
+            double botHeading = imu.getAngularOrientation().firstAngle;
 
             // Adjust the controller input by the robot's heading.
-            final double adjustedLy = ly * Math.cos(botHeading) + lx * Math.sin(botHeading);
-            final double adjustedLx = -ly * Math.sin(botHeading) + lx * Math.cos(botHeading);
-            final double denominator = Math.max(Math.abs(ly) + Math.abs(lx) + Math.abs(rx), 1);
+            double adjustedLy  = ly * Math.cos(botHeading) + lx * Math.sin(botHeading);
+            double adjustedLx  = -ly * Math.sin(botHeading) + lx * Math.cos(botHeading);
+            double denominator = Math.max(Math.abs(ly) + Math.abs(lx) + Math.abs(rx), 1);
 
-            final double[] motorPowers = {
+            double[] motorPowers = {
                 (adjustedLy + adjustedLx + rx) / denominator, // front left
                 (adjustedLy - adjustedLx + rx) / denominator, // back left
                 (adjustedLy - adjustedLx - rx) / denominator, // front right
