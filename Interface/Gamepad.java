@@ -1,4 +1,3 @@
-// Required imports.
 import com.qualcomm.robotcore.exception.RobotCoreException;
 import com.qualcomm.robotcore.hardware.Gamepad;
 
@@ -7,17 +6,17 @@ public class GamepadControllerBase {
     protected Gamepad previous;
 
     protected GamepadControllerBase() {
-        gamepad  = new Gamepad();
-        previous = new Gamepad();
+        this.gamepad  = new Gamepad();
+        this.previous = new Gamepad();
     }
 
     // Must be called at the beginning of each while opModeIsActive() loop.
-    protected void update() {
+    protected void update(Gamepad gamepad) {
         try {
-            previous.copy(gamepad);
-            gamepad.copy(gamepad1);
+            this.previous.copy(gamepad);
+            this.gamepad.copy(gamepad);
         } catch (RobotCoreException e) {
-            // Swallow exception, gamepad1 or gamepad2 should always be valid.
+            // Swallow exception, gamepad[1/2] should always be valid.
         }
     }
 }
@@ -157,18 +156,5 @@ private class GamepadController extends GamepadControllerBase {
 
     public boolean isHeldRightTrigger() {
         return gamepad.right_trigger > 0.5 && previous.right_trigger > 0.5;
-    }
-}
-
-// To make a controller class for gamepad2, simply extend GamepadController and override the update() method.
-public class Gamepad2Controller extends GamepadController {
-    @Override
-    public void update() {
-        try {
-            previous.copy(gamepad);
-            gamepad.copy(gamepad2);
-        } catch (RobotCoreException e) {
-            // Swallow exception, gamepad1 or gamepad2 should always be valid.
-        }
     }
 }
