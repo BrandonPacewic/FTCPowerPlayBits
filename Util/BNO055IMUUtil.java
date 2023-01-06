@@ -34,7 +34,7 @@ public class BNO055IMUUtil {
             boolean areTwoAxesSwapped = (isXSwapped ? 1 : 0) + (isYSwapped ? 1 : 0) + (isZSwapped ? 1 : 0) == 2;
             boolean oddNumOfFlips = Integer.bitCount(axisMapSigns) % 2 == 1;
 
-            if (areTwoAxesSwapped && oddNumOfFlips) {
+            if (areTwoAxesSwapped != oddNumOfFlips) {
                 throw new InvalidAxisRemapException("Coordinate system is left-handed");
             }
 
