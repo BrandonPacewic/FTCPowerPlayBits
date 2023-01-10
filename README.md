@@ -6,7 +6,7 @@ Please note that all of this code relys on the [FTC Robot Controller API](https:
 
 ## Where is this code used?
 
-Some of this code is out of date, for the most up to day version and for the specific use cases of these classes visit the [4097-powerplay repository](https://github.com/THSTechTeam/4097-powerplay).
+Some of this code is out of date, for the most up to date version and for the specific use cases of these classes visit the [4097-powerplay repository](https://github.com/THSTechTeam/4097-powerplay).
 
 ## License
 
